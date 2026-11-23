@@ -1,0 +1,879 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Wifey 🎀</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Poppins:wght@300;400;500;600;700&family=Caveat:wght@500;700&display=swap');
+
+:root {
+  --pink:#ff9fbd;
+  --rose:#e85d87;
+  --cream:#fff6ef;
+  --purple:#8e6ba8;
+  --dark:#422d45;
+}
+
+* { box-sizing:border-box; margin:0; padding:0; }
+
+html { scroll-behavior:smooth; }
+
+body {
+  background:#fff4f7;
+  color:var(--dark);
+  font-family:Poppins,sans-serif;
+  overflow-x:hidden;
+}
+
+button { font-family:inherit; cursor:pointer; }
+
+#intro {
+  position:fixed;
+  inset:0;
+  z-index:1000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:radial-gradient(circle at top,#ffe0ec,#d9c3ed 70%,#a98cbd);
+  transition:opacity .9s, visibility .9s;
+}
+
+#intro.hide { opacity:0; visibility:hidden; }
+
+.envelope {
+  width:min(360px,90vw);
+  padding:38px 25px;
+  text-align:center;
+  background:#fffaf7;
+  border-radius:22px;
+  box-shadow:0 20px 70px #58345c44;
+  position:relative;
+  animation:float 3s infinite ease-in-out;
+}
+
+.envelope .heart { font-size:48px; }
+
+.envelope h1 {
+  font-family:'Playfair Display',serif;
+  color:#c64c7d;
+  font-size:30px;
+  margin:15px 0;
+}
+
+.envelope p { line-height:1.8; color:#80647b; }
+
+.open-btn,.main-btn {
+  border:0;
+  padding:13px 25px;
+  margin-top:22px;
+  border-radius:30px;
+  color:white;
+  background:linear-gradient(120deg,#f27ca5,#a87acb);
+  box-shadow:0 7px 20px #dc78a566;
+  font-weight:600;
+  transition:.3s;
+}
+
+.open-btn:hover,.main-btn:hover { transform:translateY(-3px); }
+
+header {
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:35px 18px;
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(145deg,#ffe1ec,#f5dafa,#d6d7ff);
+}
+
+.hero-content { position:relative; z-index:3; }
+
+.eyebrow {
+  letter-spacing:4px;
+  text-transform:uppercase;
+  font-size:11px;
+  color:#a15b88;
+}
+
+.hero-title {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(42px,10vw,78px);
+  line-height:1.15;
+  color:#a63f72;
+  margin:15px 0;
+}
+
+.hero-title span { color:#805baf; font-style:italic; }
+
+.hero-sub {
+  max-width:450px;
+  margin:auto;
+  line-height:1.9;
+  color:#765c7d;
+}
+
+.date {
+  display:inline-block;
+  margin-top:20px;
+  padding:10px 23px;
+  border:1px solid #d98caf;
+  border-radius:30px;
+  color:#a54876;
+  background:#ffffff88;
+}
+
+.scroll {
+  display:block;
+  margin-top:35px;
+  color:#93658d;
+  font-size:12px;
+  letter-spacing:2px;
+  animation:float 2s infinite;
+}
+
+.anime-scene {
+  height:260px;
+  width:min(390px,90vw);
+  margin:25px auto 0;
+  position:relative;
+  overflow:hidden;
+  border-radius:30px;
+  background:linear-gradient(#a8b8e9,#f7c9dc 75%,#a8a4ce);
+  box-shadow:0 15px 40px #76527b33;
+}
+
+.moon {
+  position:absolute;
+  top:25px;
+  right:45px;
+  width:55px;
+  height:55px;
+  border-radius:50%;
+  background:#fff5d8;
+  box-shadow:0 0 35px #fff4d8;
+}
+
+.cloud {
+  position:absolute;
+  width:90px;
+  height:24px;
+  background:#fff9;
+  border-radius:50px;
+  top:75px;
+  animation:cloud 12s linear infinite;
+}
+
+.cloud:before,.cloud:after {
+  content:"";
+  position:absolute;
+  background:inherit;
+  border-radius:50%;
+}
+
+.cloud:before { width:35px;height:35px;left:15px;top:-17px; }
+.cloud:after { width:45px;height:40px;right:12px;top:-20px; }
+
+.cloud.two { top:125px; animation-delay:-6s; transform:scale(.7); }
+
+.ground {
+  position:absolute;
+  bottom:-40px;
+  width:100%;
+  height:100px;
+  background:#7775a5;
+  border-radius:50% 50% 0 0;
+}
+
+.character {
+  position:absolute;
+  bottom:40px;
+  width:90px;
+  height:130px;
+  animation:sway 3s ease-in-out infinite;
+}
+
+.character.left { left:23%; }
+.character.right { right:23%; animation-delay:-1.5s; }
+
+.hair {
+  position:absolute;
+  width:75px;
+  height:78px;
+  left:8px;
+  top:0;
+  border-radius:48% 48% 40% 40%;
+  background:#493449;
+  z-index:2;
+}
+
+.hair.pink { background:#6d405e; }
+
+.face {
+  position:absolute;
+  top:22px;
+  left:18px;
+  width:58px;
+  height:62px;
+  border-radius:45%;
+  background:#ffe0cf;
+  z-index:3;
+}
+
+.fringe {
+  position:absolute;
+  top:0;
+  left:15px;
+  width:65px;
+  height:35px;
+  background:#493449;
+  border-radius:50% 50% 25% 20%;
+  z-index:4;
+}
+
+.eye {
+  position:absolute;
+  top:28px;
+  left:13px;
+  width:7px;
+  height:11px;
+  background:#493449;
+  border-radius:50%;
+  box-shadow:23px 0 #493449;
+}
+
+.blush {
+  position:absolute;
+  top:43px;
+  left:7px;
+  width:12px;
+  height:6px;
+  background:#f28e9f;
+  border-radius:50%;
+  box-shadow:28px 0 #f28e9f;
+}
+
+.body {
+  position:absolute;
+  bottom:0;
+  left:12px;
+  width:65px;
+  height:65px;
+  border-radius:22px 22px 5px 5px;
+  background:#fff2f5;
+  z-index:1;
+}
+
+.character.right .body { background:#665b9c; }
+
+.heart-float {
+  position:absolute;
+  font-size:20px;
+  animation:rise 5s linear infinite;
+  opacity:.8;
+}
+
+section { padding:75px 18px; }
+
+.section-title {
+  text-align:center;
+  font-family:'Playfair Display',serif;
+  font-size:clamp(30px,7vw,45px);
+  color:#a74675;
+  margin-bottom:12px;
+}
+
+.section-sub {
+  text-align:center;
+  color:#997a96;
+  margin:0 auto 35px;
+  font-size:13px;
+  max-width:500px;
+  line-height:1.8;
+}
+
+.chapters {
+  background:linear-gradient(180deg,#fff4f7,#f6edff);
+}
+
+.chapter-grid {
+  max-width:950px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:17px;
+}
+
+.chapter {
+  padding:24px;
+  min-height:180px;
+  border-radius:22px;
+  background:#fffdfb;
+  border:1px solid #f3d7e4;
+  box-shadow:0 8px 25px #8c5a7910;
+  transition:.35s;
+  position:relative;
+  overflow:hidden;
+}
+
+.chapter:hover {
+  transform:translateY(-6px) rotate(-.5deg);
+  box-shadow:0 14px 30px #b46a9222;
+}
+
+.chapter .number {
+  color:#d77ba1;
+  font-size:12px;
+  letter-spacing:2px;
+}
+
+.chapter h3 {
+  font-family:'Playfair Display',serif;
+  color:#98547d;
+  margin:12px 0;
+  font-size:21px;
+}
+
+.chapter p {
+  font-size:13px;
+  line-height:1.9;
+  color:#806d82;
+}
+
+.chapter .sticker {
+  position:absolute;
+  right:15px;
+  top:12px;
+  font-size:25px;
+}
+
+.gallery {
+  background:#fffaf3;
+}
+
+.photo-grid {
+  max-width:900px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(145px,1fr));
+  gap:23px;
+}
+
+.polaroid {
+  background:white;
+  padding:9px 9px 22px;
+  border-radius:4px;
+  box-shadow:0 8px 20px #5b354522;
+  transform:rotate(var(--tilt));
+  transition:.35s;
+  cursor:pointer;
+}
+
+.polaroid:hover {
+  transform:rotate(0) scale(1.06);
+  z-index:2;
+}
+
+.polaroid img {
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  display:block;
+  background:#f7dce8;
+}
+
+.polaroid p {
+  font-family:Caveat,cursive;
+  font-size:20px;
+  text-align:center;
+  color:#9a5879;
+  margin-top:8px;
+}
+
+#lightbox {
+  position:fixed;
+  inset:0;
+  z-index:1500;
+  background:#211529ed;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+#lightbox.show { display:flex; }
+
+#lightbox img {
+  max-width:95%;
+  max-height:80vh;
+  border:9px solid white;
+  border-bottom:30px solid white;
+  border-radius:4px;
+}
+
+#lightbox button {
+  position:absolute;
+  top:20px;
+  right:22px;
+  color:white;
+  background:none;
+  border:0;
+  font-size:35px;
+}
+
+.surprise {
+  background:linear-gradient(145deg,#f8d9e8,#e4d7fa);
+  text-align:center;
+  overflow:hidden;
+}
+
+.surprise-box {
+  max-width:560px;
+  margin:auto;
+  padding:35px 20px;
+  background:#fffaf7dd;
+  border-radius:30px;
+  box-shadow:0 15px 40px #6c477733;
+}
+
+.surprise-box h2 {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(27px,7vw,40px);
+  color:#a64678;
+}
+
+.surprise-box p {
+  color:#866b88;
+  margin-top:12px;
+  line-height:1.8;
+}
+
+.choice-area {
+  position:relative;
+  height:100px;
+  max-width:320px;
+  margin:15px auto 0;
+}
+
+.choice-area button {
+  border:0;
+  padding:12px 26px;
+  border-radius:30px;
+  font-weight:600;
+  position:absolute;
+  top:20px;
+  transition:top .2s,left .2s;
+}
+
+#yes {
+  left:10%;
+  color:white;
+  background:#e86d9c;
+}
+
+#no {
+  left:55%;
+  color:#795d86;
+  background:#eee0f4;
+}
+
+#yes-result {
+  display:none;
+  padding:22px 10px 0;
+  animation:appear .7s;
+}
+
+#yes-result h3 {
+  color:#bd4e83;
+  font-family:'Playfair Display',serif;
+  font-size:29px;
+}
+
+#yes-result p { margin-top:12px; }
+
+.letter {
+  background:#fff7f0;
+}
+
+.letter-paper {
+  max-width:680px;
+  margin:auto;
+  padding:35px 28px;
+  background:#fffdf9;
+  border:1px solid #efd6dc;
+  box-shadow:0 12px 35px #76516b17;
+  border-radius:5px;
+  position:relative;
+}
+
+.letter-paper:before {
+  content:"✿";
+  position:absolute;
+  top:10px;
+  right:17px;
+  font-size:28px;
+  color:#e9a2ba;
+}
+
+.letter-paper h3 {
+  font-family:'Caveat',cursive;
+  font-size:31px;
+  color:#b6507c;
+  margin-bottom:15px;
+}
+
+.letter-paper p {
+  font-size:14px;
+  line-height:2;
+  color:#745e72;
+  margin-bottom:14px;
+}
+
+.final {
+  min-height:80vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:white;
+  background:linear-gradient(140deg,#563f70,#a15f91,#e88cae);
+  position:relative;
+  overflow:hidden;
+}
+
+.final h2 {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(38px,9vw,65px);
+}
+
+.final p {
+  max-width:450px;
+  margin:20px auto;
+  line-height:2;
+  color:#ffebf4;
+}
+
+.cake { font-size:85px; animation:float 3s infinite; }
+
+footer {
+  padding:25px 10px;
+  text-align:center;
+  background:#39283f;
+  color:#f6d8e8;
+  font-size:13px;
+}
+
+footer span {
+  font-family:Caveat,cursive;
+  font-size:22px;
+  color:#ffabc9;
+}
+
+.petal {
+  position:fixed;
+  top:-30px;
+  z-index:50;
+  pointer-events:none;
+  animation:fall linear forwards;
+}
+
+.sparkle {
+  position:fixed;
+  pointer-events:none;
+  z-index:40;
+  animation:rise 4s linear forwards;
+}
+
+@keyframes float {
+  0%,100% { transform:translateY(0); }
+  50% { transform:translateY(-12px); }
+}
+
+@keyframes sway {
+  0%,100% { transform:rotate(-3deg); }
+  50% { transform:rotate(3deg); }
+}
+
+@keyframes rise {
+  from { transform:translateY(30px); opacity:0; }
+  20% { opacity:1; }
+  to { transform:translateY(-100vh); opacity:0; }
+}
+
+@keyframes fall {
+  to { transform:translate(100px,110vh) rotate(500deg); opacity:0; }
+}
+
+@keyframes cloud {
+  from { left:-120px; }
+  to { left:110%; }
+}
+
+@keyframes appear {
+  from { opacity:0; transform:scale(.8); }
+  to { opacity:1; transform:scale(1); }
+}
+
+@media(max-width:480px) {
+  section { padding:60px 14px; }
+  .anime-scene { height:230px; }
+  .character.left { left:17%; }
+  .character.right { right:17%; }
+  .photo-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:17px; }
+  .polaroid img { height:160px; }
+  .letter-paper { padding:30px 20px; }
+}
+</style>
+</head>
+
+<body>
+
+<div id="intro">
+  <div class="envelope">
+    <div class="heart">💌</div>
+    <h1>A Little Surprise</h1>
+    <p>Someone special has a birthday...</p>
+    <p>Ready to open your little magical world?</p>
+    <button class="open-btn" onclick="openSite()">Open My Surprise 🎀</button>
+  </div>
+</div>
+
+<header id="home">
+  <div class="hero-content">
+    <p class="eyebrow">A little anime birthday story</p>
+    <h1 class="hero-title">Happy Birthday<br><span>Wifey 🎀</span></h1>
+    <p class="hero-sub">
+      Today is your special day. May your world always be filled
+      with beautiful moments, little surprises and endless happiness.
+    </p>
+    <div class="date">🌷 25 November 🌷</div>
+
+    <div class="anime-scene">
+      <div class="moon"></div>
+      <div class="cloud"></div>
+      <div class="cloud two"></div>
+      <div class="ground"></div>
+
+      <div class="character left">
+        <div class="hair"></div>
+        <div class="face"><div class="eye"></div><div class="blush"></div></div>
+        <div class="fringe"></div>
+        <div class="body"></div>
+      </div>
+
+      <div class="character right">
+        <div class="hair pink"></div>
+        <div class="face"><div class="eye"></div><div class="blush"></div></div>
+        <div class="fringe"></div>
+        <div class="body"></div>
+      </div>
+
+      <div class="heart-float" style="left:44%;bottom:45%">💗</div>
+      <div class="heart-float" style="left:54%;bottom:65%;animation-delay:2s">✨</div>
+    </div>
+
+    <span class="scroll">SCROLL TO EXPLORE ↓</span>
+  </div>
+</header>
+
+<section class="chapters">
+  <h2 class="section-title">Our Little Story 📖</h2>
+  <p class="section-sub">15 little chapters filled with smiles, memories and birthday magic.</p>
+
+  <div class="chapter-grid">
+
+    <article class="chapter">
+      <span class="number">CHAPTER 01</span><span class="sticker">🌸</span>
+      <h3>The Birthday Girl</h3>
+      <p>Today the world celebrates someone who deserves all the happiness, kindness and beautiful surprises.</p>
+    </article>
+
+    <article class="chapter">
+      <span class="number">CHAPTER 02</span><span class="sticker">🎀</span>
+      <h3>Wifey's Attitude 😂</h3>
+      <p>Warning! Wifey's cuteness level is dangerous! Her attitude comes with unlimited confidence and extra drama.</p>
+    </article>
+
+    <article class="chapter">
+      <span class="number">CHAPTER 03</span><span class="sticker">🥹</span>
+      <h3>Cute Drama Queen</h3>
+      <p>One tiny problem, ten dramatic expressions. The anime directors would definitely give her the main character role.</p>
+    </article>
+
+    <article class="chapter">
+      <span class="number">CHAPTER 04</span><span class="sticker">🏆</span>
+      <h3>Who Loves More?</h3>
+      <p>A competition with no final result. Both sides claim victory, and the judges are permanently confused.</p>
+    </article>
+
+    <article class="chapter">
+      <span class="number">CHAPTER 05</span><span class="sticker">🤣</span>
+      <h3>Kappu's Complaints</h3>
+      <p>You stole my heart and never returned it! And there is still no customer support for this situation.</p>
+    </article>
+
+    <article class="chapter">
+      <span class="number">CHAPTER 06</span><span class="sticker">👑</span>
+      <h3>Unlimited Nakhras</h3>
+      <p>One request becomes five, five become ten. The nakhras subscription is clearly unlimited!</p>
+    </article>
+
+    <article class="chapter">
+      <span class="number">CHAPTER 07</span><span class="sticker">🌙</span>
+      <h3>Moonlight Memories</h3>
+      <p>Like a peaceful anime night under the stars, may every memory bring a little warmth and happiness.</p>
+    </article>
+
+    <article class="chapter">
+      <span class="number">CHAPTER 08</span><span class="sticker">🦋</span>
+      <h3>Butterfly Moments</h3>
+      <p>Some little moments become beautiful memories. Keep collecting those tiny reasons to smile.</p>
+    </article>
+
+    <article class="chapter">
+      <span class="number">CHAPTER 09</span><span class="sticker">🍓</span>
+      <h3>Sweetest Personality</h3>
+      <p>A little sweetness, a little mischief and a whole lot of unforgettable personality.</p>
+    </article>
+
+    <article class="chapter">
+      <span class="number">CHAPTER 10</span><span class="sticker">🎬</span>
+      <h3>Anime Main Character</h3>
+      <p>If life were an anime, today would be your special episode with beautiful scenery and a happy ending.</p>
+    </article>
+
+    <article class="chapter">
+      <span class="number">CHAPTER 11</span><span class="sticker">💌</span>
+      <h3>A Little Appreciation</h3>
+      <p>Never forget how special your presence is. You deserve respect, kindness and all the good things in life.</p>
+    </article>
+
+    <article class="chapter">
+      <span class="number">CHAPTER 12</span><span class="sticker">🌷</span>
+      <h3>Dreams & Wishes</h3>
+      <p>May your dreams grow bigger, your worries become smaller and your days become brighter.</p>
+    </article>
+
+    <article class="chapter">
+      <span class="number">CHAPTER 13</span><span class="sticker">😤</span>
+      <h3>Don't Touch Me</h3>
+      <p>Warning: This button contains a very serious amount of cuteness and a completely unserious surprise.</p>
+      <button class="main-btn" onclick="alert('Surprise! 😂 Your drama level has officially reached anime legend status! 🎀')">Don't Touch Me 😤</button>
+    </article>
+
+    <article class="chapter">
+      <span class="number">CHAPTER 14</span><span class="sticker">💗</span>
+      <h3>A Special Letter</h3>
+      <p>There are many things worth celebrating about you. This birthday is a reminder to enjoy every little moment.</p>
+    </article>
+
+    <article class="chapter">
+      <span class="number">CHAPTER 15</span><span class="sticker">🎂</span>
+      <h3>One More Wish</h3>
+      <p>May this new year of your life bring new adventures, lovely surprises and countless reasons to smile.</p>
+    </article>
+
+  </div>
+</section>
+
+<section class="gallery">
+  <h2 class="section-title">Our Scrapbook 📸</h2>
+  <p class="section-sub">Little pictures, lovely memories. Tap any photo to see it bigger.</p>
+
+  <div class="photo-grid">
+
+    <div class="polaroid" style="--tilt:-3deg">
+      <img src="./Snapchat-845155939.jpg" alt="Memory 1" onclick="showPhoto(this)" loading="lazy">
+      <p>Pretty Memory 🌸</p>
+    </div>
+
+    <div class="polaroid" style="--tilt:3deg">
+      <img src="./Snapchat-958478409.jpg" alt="Memory 2" onclick="showPhoto(this)" loading="lazy">
+      <p>Little Smile 💗</p>
+    </div>
+
+    <div class="polaroid" style="--tilt:-2deg">
+      <img src="./Snapchat-1531613918.jpg" alt="Memory 3" onclick="showPhoto(this)" loading="lazy">
+      <p>Sweet Moment 🎀</p>
+    </div>
+
+    <div class="polaroid" style="--tilt:3deg">
+      <img src="./Snapchat-132161883.jpg" alt="Memory 4" onclick="showPhoto(this)" loading="lazy">
+      <p>Lovely Day 🌷</p>
+    </div>
+
+    <div class="polaroid" style="--tilt:-3deg">
+      <img src="./Snapchat-1097512383.jpg" alt="Memory 5" onclick="showPhoto(this)" loading="lazy">
+      <p>My Favourite ✨</p>
+    </div>
+
+    <div class="polaroid" style="--tilt:2deg">
+      <img src="./Snapchat-76443071.jpg" alt="Memory 6" onclick="showPhoto(this)" loading="lazy">
+      <p>Cutie Moment 🦋</p>
+    </div>
+
+    <div class="polaroid" style="--tilt:-2deg">
+      <img src="./Snapchat-1015828381.jpg" alt="Memory 7" onclick="showPhoto(this)" loading="lazy">
+      <p>Beautiful Memory 💕</p>
+    </div>
+
+    <div class="polaroid" style="--tilt:3deg">
+      <img src="./Snapchat-1410183377.jpg" alt="Memory 8" onclick="showPhoto(this)" loading="lazy">
+      <p>Dreamy Vibes 🌙</p>
+    </div>
+
+    <div class="polaroid" style="--tilt:-3deg">
+      <img src="./Snapchat-1098653693.jpg" alt="Memory 9" onclick="showPhoto(this)" loading="lazy">
+      <p>Sweetest Smile 🍓</p>
+    </div>
+
+    <div class="polaroid" style="--tilt:2deg">
+      <img src="./Snapchat-1392645630.jpg" alt="Memory 10" onclick="showPhoto(this)" loading="lazy">
+      <p>Special Picture 💌</p>
+    </div>
+
+    <div class="polaroid" style="--tilt:-2deg">
+      <img src="./Snapchat-1204422887.jpg" alt="Memory 11" onclick="showPhoto(this)" loading="lazy">
+      <p>Forever A Memory 🌸</p>
+    </div>
+
+  </div>
+</section>
+
+<div id="lightbox" onclick="closePhoto()">
+  <button aria-label="Close photo">×</button>
+  <img id="bigPhoto" src="" alt="Enlarged memory">
+</div>
+
+<section class="surprise">
+  <div class="surprise-box">
+    <h2>One Little Question... 💗</h2>
+    <p>Wifey, will you be my Birthday Star? 🌟</p>
+
+    <div class="choice-area" id="choiceArea">
+      <button id="yes" onclick="sayYes()">YES ❤️</button>
+      <button id="no" onclick="moveNo()">NO 🙈</button>
+    </div>
+
+    <div id="yes-result">
+      <h3>Yaaay! 🎉🌸</h3>
+      <div style="font-size:55px;margin:15px">🎂💗✨</div>
+      <p>
+        You are today's shining star! May your birthday be full of
+        laughter, beautiful memories, sweet surprises and happiness.
+        Keep shining, Birthday Girl! 🌷
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="letter">
+  <h2 class="section-title">A Little Birthday Letter 💌</h2>
+  <p class="section-sub">A few words from the heart.</p>
+
+  <div class="letter-p
